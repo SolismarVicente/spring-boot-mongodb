@@ -1,11 +1,16 @@
-package com.educandoweb.CursoJPAMongoDB.dominio;
+package com.educandoweb.CursoJPAMongoDB.domain;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "usuario")
 public class Usuario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String codigo;
 	private String nomeUsuario;
 	private String emailUsuario;
@@ -13,7 +18,7 @@ public class Usuario implements Serializable {
 	public Usuario() {
 		
 	}
-
+	
 	public Usuario(String codigo, String nomeUsuario, String emailUsuario) {
 		super();
 		this.codigo = codigo;
