@@ -1,14 +1,18 @@
 package com.educandoweb.CursoJPAMongoDB.recursos;
 //no vídeo está resources no lugar de recursos
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.educandoweb.CursoJPAMongoDB.dominios.Post;
+import com.educandoweb.CursoJPAMongoDB.recursos.util.URL;
 import com.educandoweb.CursoJPAMongoDB.servicos.ServicoPost;
 
 @RestController
@@ -66,4 +70,12 @@ public class RecursoPost {
 //		
 //		return ResponseEntity.ok().body(objetoPost.getPosts());
 //	}
+	
+	@RequestMapping(value = "/titlesearch", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> buscarPorTitulo(@RequestParam(value = "text", defaultValue = "") String texto) {
+		texto = URL.decodificarParametro(texto);
+		List<Post> lista = servicoPost.buscarPorTitulo(texto);
+		
+		return ResponseEntity.ok().body(lista);
+	}
 }

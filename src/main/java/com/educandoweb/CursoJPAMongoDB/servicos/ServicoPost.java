@@ -52,4 +52,9 @@ public class ServicoPost {
 //	public Post fromDTO(DTOPost objetoDTOPost) {
 //		return new Post(objetoDTOPost.getCodigo(), objetoDTOPost.getNomePost(), objetoDTOPost.getEmailPost());
 //	}
+	
+	public List<Post> buscarPorTitulo(String texto) {
+		return repoPost.findByTitleContainingIgnoreCase(texto);
+	}
+	
 }
