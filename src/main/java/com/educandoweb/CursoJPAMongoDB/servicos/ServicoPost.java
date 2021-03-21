@@ -54,7 +54,8 @@ public class ServicoPost {
 //	}
 	
 	public List<Post> buscarPorTitulo(String texto) {
-		return repoPost.findByTitleContainingIgnoreCase(texto);
+		//return repoPost.findByTitleContainingIgnoreCase(texto);
+		return repoPost.buscarPorTitulo(texto);
 	}
 	
 }
