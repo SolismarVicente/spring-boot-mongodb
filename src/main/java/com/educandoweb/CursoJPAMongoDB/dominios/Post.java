@@ -1,10 +1,15 @@
 package com.educandoweb.CursoJPAMongoDB.dominios;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.educandoweb.CursoJPAMongoDB.dto.DTOAutor;
+import com.educandoweb.CursoJPAMongoDB.dto.DTOComentario;
 
 @Document
 public class Post implements Serializable {
@@ -16,14 +21,15 @@ public class Post implements Serializable {
 	private Date data;
 	private String title;
 	private String body; //body: corpo
+	private DTOAutor autor;
 	
-	private Usuario autor;
+	private List<DTOComentario> comentarios = new ArrayList<>();
 	
 	public Post() {
 		
 	}
 
-	public Post(String codigo, Date data, String title, String body, Usuario autor) {
+	public Post(String codigo, Date data, String title, String body, DTOAutor autor) {
 		super();
 		this.codigo = codigo;
 		this.data = data;
@@ -64,14 +70,21 @@ public class Post implements Serializable {
 		this.body = body;
 	}
 
-	public Usuario getAutor() {
+	public DTOAutor getAutor() {
 		return autor;
 	}
 
-	public void setAutor(Usuario autor) {
+	public void setAutor(DTOAutor autor) {
 		this.autor = autor;
 	}
+	
+	public List<DTOComentario> getComentarios() {
+		return comentarios;
+	}
 
+	public void setComentarios(List<DTOComentario> comentarios) {
+		this.comentarios = comentarios;
+	}
 	
 	@Override
 	public int hashCode() {

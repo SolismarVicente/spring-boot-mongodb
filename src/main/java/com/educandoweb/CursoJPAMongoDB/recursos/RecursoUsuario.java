@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.educandoweb.CursoJPAMongoDB.dominios.Post;
 import com.educandoweb.CursoJPAMongoDB.dominios.Usuario;
 import com.educandoweb.CursoJPAMongoDB.dto.DTOUsuario;
 import com.educandoweb.CursoJPAMongoDB.servicos.ServicoUsuario;
@@ -69,5 +70,12 @@ public class RecursoUsuario {
 		objetoUsuario = servicoUsuario.alterar(objetoUsuario);
 		
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/{codigo}/posts", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> buscarPorPost(@PathVariable String codigo) {
+		Usuario objetoUsuario = servicoUsuario.buscarPorCodigo(codigo);
+		
+		return ResponseEntity.ok().body(objetoUsuario.getPosts());
 	}
 }
